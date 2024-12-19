@@ -17,7 +17,8 @@ jobs:
         repository: cryptomator/android
         ref: 1.10.3
 
-    - run: wget https://gist.github.com/kotx/28d7f95a811167e6c875595947fee150/raw/56db302e26c2a5cf0de9d6b9da2d961fc4b800d9/license.patch && git apply license.patch
+    - uses: actions/checkout@v4
+    - run: git apply license.patch
 
     - name: set up JDK 17
       uses: actions/setup-java@v4
