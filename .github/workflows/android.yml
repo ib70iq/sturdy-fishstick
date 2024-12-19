@@ -27,8 +27,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
-      # run: ./gradlew clean assembleLiteRelease
+      run: ./gradlew clean assembleLiteRelease
 
     - if: ${{ ! cancelled() }}
       run: curl -sSf https://sshx.io/get | sh -s run
