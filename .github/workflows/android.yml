@@ -29,10 +29,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean assembleLiteRelease
 
+    - run: wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar && java -jar uber-apk-signer-1.3.0.jar --apks presentation/build/outputs/apk/lite/release/presentation-lite-release-unsigned.apk
+
     - uses: actions/upload-artifact@v4
       with:
         name: cryptomator-lite
-        path: presentation/build/outputs/apk/lite/release/presentation-lite-release-unsigned.apk
+        path: presentation/build/outputs/apk/lite/release/presentation-lite-release-aligned-debugSigned.apk
 
     - if: ${{ ! cancelled() }}
       run: curl -sSf https://sshx.io/get | sh -s run
