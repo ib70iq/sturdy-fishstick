@@ -25,7 +25,7 @@ jobs:
     - run: sed -i '47,60creturn new LicenseCheck(){public String mail(){return"";}};' domain/src/main/java/org/cryptomator/domain/usecases/DoLicenseCheck.java
 
     - name: Change applicationIdSuffix and name
-      run: sed -i 's/\.lite/&_main/g' presentation/build.gradle && sed -i 's/Cryptomator/& (Main)/g' presentation/src/main/res/values/strings.xml
+      run: sed -i 's/\.lite/&_misc/g' presentation/build.gradle && sed -i 's/Cryptomator/& (Misc)/g' presentation/src/main/res/values/strings.xml
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
