@@ -23,7 +23,7 @@ jobs:
         cache: gradle
 
     - name: Change applicationIdSuffix and name
-      run: sed -i 's/applicationId "org.sufficientlysecure.keychain"/applicationId "org.sufficientlysecure.keychain_main"/g' presentation/build.gradle && sed -i 's/OpenKeychain/& (Main)/g' OpenKeychain/src/main/res/values/strings.xml
+      run: sed -i 's/applicationId "org.sufficientlysecure.keychain"/applicationId "org.sufficientlysecure.keychain_main"/g' OpenKeychain/build.gradle && sed -i 's/OpenKeychain/& (Main)/g' OpenKeychain/src/main/res/values/strings.xml
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
