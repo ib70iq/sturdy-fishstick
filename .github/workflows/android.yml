@@ -24,12 +24,16 @@ jobs:
 
     - run: sed -i '47,60creturn new LicenseCheck(){public String mail(){return"";}};' domain/src/main/java/org/cryptomator/domain/usecases/DoLicenseCheck.java
 
+    - name: Change applicationId and name
+      run: sed -i 's/\.lite/&_main/g' presentation/build.gradle && sed -i 's/Cryptomator/& (Main)/g' presentation/src/main/res/values/strings.xml
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew clean assembleLiteRelease
 
-    - run: wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar && java -jar uber-apk-signer-1.3.0.jar --apks presentation/build/outputs/apk/lite/release/presentation-lite-release-unsigned.apk
+    - run: sudo apt-get install faketime
+    - run: wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar && TZ=UTC faketime -m -f '2021-01-01 00:00:00' java -jar uber-apk-signer-1.3.0.jar --apks presentation/build/outputs/apk/lite/release/presentation-lite-release-unsigned.apk
 
     - uses: actions/upload-artifact@v4
       with:
