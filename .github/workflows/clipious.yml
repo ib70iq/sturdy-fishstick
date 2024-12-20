@@ -28,14 +28,14 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
+      run: cd android && ./gradlew assembleRelease
 
-    - run: wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar && java -jar uber-apk-signer-1.3.0.jar --apks app/build/outputs/apk/clipious-release-unsigned.apk
+    - run: wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar && java -jar uber-apk-signer-1.3.0.jar --apks android/app/build/outputs/apk/clipious-release-unsigned.apk
 
     - uses: actions/upload-artifact@v4
       with:
         name: clipious
-        path: presentation/build/outputs/apk/lite/release/clipious-release-aligned-debugSigned.apk
+        path: android/app/build/outputs/apk/lite/release/clipious-release-aligned-debugSigned.apk
 
     - if: failure() && github.event_name == 'workflow_dispatch'
       run: curl -sSf https://sshx.io/get | sh -s run
